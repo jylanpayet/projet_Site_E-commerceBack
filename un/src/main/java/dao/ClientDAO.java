@@ -3,7 +3,6 @@ package dao;
 import model.Client;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ClientDAO extends DAO<Client>{
@@ -14,8 +13,9 @@ public class ClientDAO extends DAO<Client>{
 
     @Override
     public Client create(Client obj) {
+        // Test pour verifier que la bdd fonctionne bien, la fonction sera à retravailler par la suite.
+        // * * * {
         try {
-
                 PreparedStatement prepare = this    .connect
                         .prepareStatement(
                                 "INSERT INTO client (client_id, nom, mail, adresse , telephone) VALUES(?,?,?,?,?)"
@@ -33,6 +33,7 @@ public class ClientDAO extends DAO<Client>{
             e.printStackTrace();
         }
         return obj;
+        // } * * *
     }
 
     @Override

@@ -9,11 +9,11 @@ public class ConnectionSQL {
      */
     private static String url = "jdbc:mysql://localhost:3306/asii";
     /**
-     * Nom du user
+     * Nom de l'user
      */
     private static String user = "root";
     /**
-     * Mot de passe du user
+     * Mot de passe de l'user
      */
     private static String passwd = "";
     /**
