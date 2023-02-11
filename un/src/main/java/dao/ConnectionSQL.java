@@ -7,7 +7,7 @@ public class ConnectionSQL {
     /**
      * URL de connexion à la base de donnée
      */
-    private static String url = "jdbc:mariadb://localhost:3306";
+    private static String url = "jdbc:mysql://localhost:3306/asii";
     /**
      * Nom du user
      */
@@ -29,8 +29,9 @@ public class ConnectionSQL {
     public static Connection getInstance(){
         if(connect == null){
             try {
+                Class.forName("com.mysql.jdbc.Driver");
                 connect = DriverManager.getConnection(url, user, passwd);
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }

@@ -14,7 +14,25 @@ public class ClientDAO extends DAO<Client>{
 
     @Override
     public Client create(Client obj) {
-        return null;
+        try {
+
+                PreparedStatement prepare = this    .connect
+                        .prepareStatement(
+                                "INSERT INTO client (client_id, nom, mail, adresse , telephone) VALUES(?,?,?,?,?)"
+                        );
+                prepare.setLong(1, 1);
+                prepare.setString(2, obj.getNom());
+                prepare.setString(3, obj.getNom());
+                prepare.setString(4, obj.getNom());
+                prepare.setString(5, obj.getNom());
+                prepare.executeUpdate();
+                obj = this.find(1);
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return obj;
     }
 
     @Override
