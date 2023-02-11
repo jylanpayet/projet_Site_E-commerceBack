@@ -7,7 +7,7 @@ public class ConnectionSQL {
     /**
      * URL de connexion à la base de donnée
      */
-    private static String url = "jdbc:mariadb://127.0.0.1:3306";
+    private static String url = "jdbc:mariadb://localhost:3306";
     /**
      * Nom du user
      */
