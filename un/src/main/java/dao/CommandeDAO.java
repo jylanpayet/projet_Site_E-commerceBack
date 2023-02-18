@@ -69,5 +69,5 @@ public class CommandeDAO extends DAO<Commande>{
         }
     }
 
-    // Todo : faire une fonction pour récupérer toutes les produits d'une commande
+    // Todo : faire une fonction pour récupérer tous les produits d'une commande
 }
