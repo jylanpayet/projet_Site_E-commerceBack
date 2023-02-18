@@ -9,6 +9,6 @@ import lombok.*;
 @AllArgsConstructor
 public class Commande{
     private long id;
-    private long id_client;
+    private long client_id;
 
 }

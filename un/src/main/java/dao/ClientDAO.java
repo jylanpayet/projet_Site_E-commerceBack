@@ -3,46 +3,71 @@ package dao;
 import model.Client;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ClientDAO extends DAO<Client>{
     @Override
     public Client find(long id) {
-        return null;
-    }
-
-    @Override
-    public Client create(Client obj) {
-        // Test pour verifier que la bdd fonctionne bien, la fonction sera à retravailler par la suite.
-        // * * * {
+        Client client = new Client();
         try {
-                PreparedStatement prepare = this    .connect
-                        .prepareStatement(
-                                "INSERT INTO client (client_id, nom, mail, adresse , telephone) VALUES(?,?,?,?,?)"
-                        );
-                prepare.setLong(1, 1);
-                prepare.setString(2, obj.getNom());
-                prepare.setString(3, obj.getNom());
-                prepare.setString(4, obj.getNom());
-                prepare.setString(5, obj.getNom());
-                prepare.executeUpdate();
-                obj = this.find(1);
-
-
+            PreparedStatement prepare = initialisationRequetePreparee(this.connect,"SELECT * FROM client WHERE client_id = ?",false,id);
+            ResultSet result = prepare.executeQuery();
+            if(result.first())
+                client = new Client(
+                        result.getLong("client_id"),
+                        result.getString("nom"),
+                        result.getString("adresse"),
+                        result.getString("mail"),
+                        result.getString("telephone")
+                );
+            //TODO : gérer le cas où rien ne serait trouver
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return obj;
-        // } * * *
+        return client;
     }
 
     @Override
-    public Client update(Client obj) {
-        return null;
+    public Client create(Client client) {
+        try {
+            //TODO : vérifier que les paramètres sont corrects ,gérer le cas où rien ne serait créer
+            PreparedStatement prepare = initialisationRequetePreparee(this.connect,"INSERT INTO client (nom, mail, adresse , telephone) VALUES(?,?,?,?)",
+                    true,client.getNom(),client.getAdresse(),client.getMail(),client.getTelephone());
+            prepare.executeUpdate();
+            ResultSet result = prepare.getGeneratedKeys();
+            if (result.next()) {
+                client = this.find(result.getLong( 1 ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return client;
     }
 
     @Override
-    public void delete(Client obj) {
+    public Client update(Client client) {
+        try {
+            //TODO : vérifier que tous les paramètres sont correctement remplis, et si l'update a été effectuer
+            PreparedStatement prepare = initialisationRequetePreparee(this.connect,"UPDATE client SET nom = ?, adresse = ?, mail = ?, telephone = ? WHERE client_id = ?",
+                    false,client.getNom(),client.getAdresse(),client.getMail(),client.getTelephone(),client.getId());
+            prepare.executeUpdate();
+            client = this.find(client.getId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return client;
+    }
 
+    @Override
+    public void delete(Client client) {
+        try {
+            PreparedStatement prepare = initialisationRequetePreparee(this.connect,"DELETE FROM client WHERE client_id = ?",
+                    false,client.getId());
+            prepare.executeUpdate();
+            // TODO : verifier la suppression
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

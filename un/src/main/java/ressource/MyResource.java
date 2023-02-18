@@ -29,9 +29,11 @@ public class MyResource {
         // à retravailler par la suite.
 
         // * * * {
-        Client c = new Client(1,"salut","salut","salut","salut");
+        Client c = new Client(0,"coucou","17 rue de la presse","11@gmail.com","088082830");
         ClientDAO coco =new ClientDAO();
-        coco.create(c);
+        Client d = coco.create(c);
+        System.out.println(d);
+        coco.delete(d);
         // } * * *
 
         return "Got it!";
