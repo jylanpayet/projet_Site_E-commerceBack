@@ -71,4 +71,6 @@ public class ProduitDAO extends DAO<Produit>{
             e.printStackTrace();
         }
     }
+
+    // TODO : faire une fonction pour trouver un produit avec sa catégorie et sa sous catégorie
 }

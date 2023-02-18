@@ -71,4 +71,5 @@ public class ClientDAO extends DAO<Client>{
             e.printStackTrace();
         }
     }
+    // Todo : faire une fonction pour récupérer toutes les commandes d'un utilisateur
 }

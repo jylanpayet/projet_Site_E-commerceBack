@@ -36,6 +36,7 @@ public class CommandeDAO extends DAO<Commande>{
             if (result.next()) {
                 commande = this.find(result.getLong( 1 ));
             }
+            // TODO : une fois la commande créer, lier les produits dans le panier à la commande
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -67,4 +68,6 @@ public class CommandeDAO extends DAO<Commande>{
             e.printStackTrace();
         }
     }
+
+    // Todo : faire une fonction pour récupérer toutes les produits d'une commande
 }
