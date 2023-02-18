@@ -14,4 +14,5 @@ public class Client {
     private String adresse;
     private String mail;
     private String telephone;
+    private long admin;
 }

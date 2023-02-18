@@ -19,7 +19,8 @@ public class ClientDAO extends DAO<Client>{
                         result.getString("nom"),
                         result.getString("adresse"),
                         result.getString("mail"),
-                        result.getString("telephone")
+                        result.getString("telephone"),
+                        result.getLong("admin")
                 );
             //TODO : gérer le cas où rien ne serait trouver
         } catch (SQLException e) {
@@ -32,8 +33,8 @@ public class ClientDAO extends DAO<Client>{
     public Client create(Client client) {
         try {
             //TODO : vérifier que les paramètres sont corrects ,gérer le cas où rien ne serait créer
-            PreparedStatement prepare = initialisationRequetePreparee(this.connect,"INSERT INTO client (nom, mail, adresse , telephone) VALUES(?,?,?,?)",
-                    true,client.getNom(),client.getAdresse(),client.getMail(),client.getTelephone());
+            PreparedStatement prepare = initialisationRequetePreparee(this.connect,"INSERT INTO client (nom, mail, adresse , telephone,admin) VALUES(?,?,?,?,?)",
+                    true,client.getNom(),client.getAdresse(),client.getMail(),client.getTelephone(),0);
             prepare.executeUpdate();
             ResultSet result = prepare.getGeneratedKeys();
             if (result.next()) {
@@ -49,8 +50,8 @@ public class ClientDAO extends DAO<Client>{
     public Client update(Client client) {
         try {
             //TODO : vérifier que tous les paramètres sont correctement remplis, et si l'update a été effectuer
-            PreparedStatement prepare = initialisationRequetePreparee(this.connect,"UPDATE client SET nom = ?, adresse = ?, mail = ?, telephone = ? WHERE client_id = ?",
-                    false,client.getNom(),client.getAdresse(),client.getMail(),client.getTelephone(),client.getId());
+            PreparedStatement prepare = initialisationRequetePreparee(this.connect,"UPDATE client SET nom = ?, adresse = ?, mail = ?, telephone = ?, admin = ? WHERE client_id = ?",
+                    false,client.getNom(),client.getAdresse(),client.getMail(),client.getTelephone(),client.getId(),0);
             prepare.executeUpdate();
             client = this.find(client.getId());
         } catch (SQLException e) {
