@@ -36,7 +36,7 @@ public class CommandeDAO extends DAO<Commande>{
             if (result.next()) {
                 commande = this.find(result.getLong( 1 ));
             }
-            // TODO : une fois la commande créer, lier les produits dans le panier à la commande
+            // TODO : une fois la commande créer, lier les produits du panier à la commande
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -60,10 +60,10 @@ public class CommandeDAO extends DAO<Commande>{
     @Override
     public void delete(Commande commande) {
         try {
+            // TODO : Supprimer tous les liens de produit en rapport avec la commande et verifier la suppression
             PreparedStatement prepare = initialisationRequetePreparee(this.connect,"DELETE FROM commande WHERE commande_id = ?",
                     false,commande.getId());
             prepare.executeUpdate();
-            // TODO : verifier la suppression
         } catch (SQLException e) {
             e.printStackTrace();
         }

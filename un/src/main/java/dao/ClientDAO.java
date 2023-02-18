@@ -32,7 +32,7 @@ public class ClientDAO extends DAO<Client>{
     @Override
     public Client create(Client client) {
         try {
-            //TODO : vérifier que les paramètres sont corrects ,gérer le cas où rien ne serait créer
+            //TODO : vérifier que les paramètres sont correctement remplis, gérer le cas où rien ne serait créer
             PreparedStatement prepare = initialisationRequetePreparee(this.connect,"INSERT INTO client (nom, mail, adresse , telephone,admin) VALUES(?,?,?,?,?)",
                     true,client.getNom(),client.getAdresse(),client.getMail(),client.getTelephone(),0);
             prepare.executeUpdate();
