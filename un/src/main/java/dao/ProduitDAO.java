@@ -72,5 +72,5 @@ public class ProduitDAO extends DAO<Produit>{
         }
     }
 
-    // TODO : faire une fonction pour trouver un produit avec sa catégorie et sa sous catégorie
+    // TODO : faire une fonction pour lister les produits dans catégorie -> sous catégorie
 }
