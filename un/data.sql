@@ -8,6 +8,7 @@ CREATE TABLE client (
     mail VARCHAR(255) NOT NULL,
     adresse VARCHAR(255) NOT NULL,
     telephone VARCHAR(255) NOT NULL,
+    motdepasse VARCHAR(255) NOT NULL,
     admin TINYINT(1) NOT NULL
 );
 
