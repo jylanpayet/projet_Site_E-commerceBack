@@ -1,7 +1,7 @@
 package ressource;
-
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 
 @Path("commande")
 public class CommandeRessource {
+
 }

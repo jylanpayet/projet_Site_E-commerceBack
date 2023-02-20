@@ -29,11 +29,10 @@ public class MyResource {
         // à retravailler par la suite.
 
         // * * * {
-        Client c = new Client(0,"coucou","17 rue de la presse","11@gmail.com","088082830",0);
+        Client c = new Client(0,"coucou","17 rue de la presse","11@gmail.com","088082830","",0);
         ClientDAO coco =new ClientDAO();
         Client d = coco.create(c);
         System.out.println(d);
-        coco.delete(d);
         // } * * *
 
         return "Got it!";

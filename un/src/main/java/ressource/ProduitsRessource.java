@@ -1,6 +1,5 @@
 package ressource;
-
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 
 @Path("produits")
 public class ProduitsRessource {

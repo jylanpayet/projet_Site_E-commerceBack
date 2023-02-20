@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ProduitDAO extends DAO<Produit>{
+    public static ProduitDAO instance = new ProduitDAO();
     @Override
     public Produit find(long id) {
         Produit produit = new Produit();

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CommandeDAO extends DAO<Commande>{
+    public static CommandeDAO instance = new CommandeDAO();
     @Override
     public Commande find(long id) {
         Commande commande = new Commande();

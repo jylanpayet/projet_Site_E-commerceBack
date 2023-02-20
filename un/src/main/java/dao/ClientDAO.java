@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ClientDAO extends DAO<Client>{
+    public static ClientDAO instance = new ClientDAO();
     @Override
     public Client find(long id) {
         Client client = new Client();
@@ -20,7 +21,7 @@ public class ClientDAO extends DAO<Client>{
                         result.getString("adresse"),
                         result.getString("mail"),
                         result.getString("telephone"),
-                        result.getString("telephone"),
+                        result.getString("motdepasse"),
                         result.getLong("admin")
                 );
             //TODO : gérer le cas où rien ne serait trouver
