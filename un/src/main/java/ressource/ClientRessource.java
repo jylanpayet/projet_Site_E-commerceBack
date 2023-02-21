@@ -46,6 +46,7 @@ public class ClientRessource {
         } else {
             res = Response.created(uriInfo.getAbsolutePath()).build();
         }
+        System.out.println(client);
         // TODO : Verifier que tout les caractères sont correct.
         ClientDAO.instance.update(client);
         return res;

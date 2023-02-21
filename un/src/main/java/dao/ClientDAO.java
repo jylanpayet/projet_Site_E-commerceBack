@@ -55,7 +55,7 @@ public class ClientDAO extends DAO<Client>{
         try {
             //TODO : vérifier que tous les paramètres sont correctement remplis, et si l'update a été effectuer
             PreparedStatement prepare = initialisationRequetePreparee(this.connect,"UPDATE client SET nom = ?, adresse = ?, mail = ?, telephone = ?, motdepasse = ?, admin = ? WHERE client_id = ?",
-                    false,client.getNom(),client.getAdresse(),client.getMail(),client.getTelephone(),client.getMotdepasse(),client.getId(),0);
+                    false,client.getNom(),client.getAdresse(),client.getMail(),client.getTelephone(),client.getMotdepasse(), 0,client.getId());
             prepare.executeUpdate();
             client = this.find(client.getId());
         } catch (SQLException e) {
