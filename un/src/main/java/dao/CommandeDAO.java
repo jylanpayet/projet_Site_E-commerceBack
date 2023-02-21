@@ -59,11 +59,11 @@ public class CommandeDAO extends DAO<Commande>{
     }
 
     @Override
-    public void delete(Commande commande) {
+    public void delete(long id) {
         try {
             // TODO : Supprimer tous les liens de produit en rapport avec la commande et verifier la suppression
             PreparedStatement prepare = initialisationRequetePreparee(this.connect,"DELETE FROM commande WHERE commande_id = ?",
-                    false,commande.getId());
+                    false,id);
             prepare.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -95,6 +95,11 @@
         <artifactId>logback-classic</artifactId>
         <version>1.2.4</version>
     </dependency>
+    <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-core</artifactId>
+        <version>9.0.68</version>
+    </dependency>
 </dependencies>
 <properties>
     <hibernate.version>5.5.4.Final</hibernate.version>

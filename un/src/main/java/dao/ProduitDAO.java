@@ -62,10 +62,10 @@ public class ProduitDAO extends DAO<Produit>{
     }
 
     @Override
-    public void delete(Produit produit) {
+    public void delete(long id) {
         try {
             PreparedStatement prepare = initialisationRequetePreparee(this.connect,"DELETE FROM produit WHERE produit_id = ?",
-                    false,produit.getId());
+                    false,id);
             prepare.executeUpdate();
             // TODO : verifier la suppression
         } catch (SQLException e) {
