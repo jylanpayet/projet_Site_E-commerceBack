@@ -72,6 +72,4 @@ public class ProduitsRessource {
     public ProduitRessource getProduit(@PathParam("id") Long id) {
         return new ProduitRessource(uriInfo, request, id);
     }
-
-    // TODO : faire une fonction pour lister les produits dans catégorie -> sous catégorie
 }
