@@ -5,6 +5,8 @@ import model.Produit;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProduitDAO extends DAO<Produit>{
     public static ProduitDAO instance = new ProduitDAO();
@@ -72,8 +74,50 @@ public class ProduitDAO extends DAO<Produit>{
             e.printStackTrace();
         }
     }
+    public List<Produit> allProduit(){
+        List<Produit> resultat = new ArrayList<>();
+        try {
+            PreparedStatement prepare = initialisationRequetePreparee(this.connect,"SELECT * FROM produit",false);
+            traitementProduit(resultat, prepare);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultat;
+    }
+    public List<Produit> produitOfCategorie(String categorie){
+        List<Produit> resultat = new ArrayList<>();
+        try {
+            PreparedStatement prepare = initialisationRequetePreparee(this.connect,"SELECT * FROM produit WHERE categorie = ?",false, categorie);
+            traitementProduit(resultat, prepare);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultat;
+    }
+    public List<Produit> produitOfSousCategorie(String categorie, String sousCategorie){
+        List<Produit> resultat = new ArrayList<>();
+        try {
+            PreparedStatement prepare = initialisationRequetePreparee(this.connect,"SELECT * FROM produit WHERE categorie = ? AND sous_categorie = ?",false, categorie, sousCategorie);
+            traitementProduit(resultat, prepare);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultat;
+    }
 
-    // TODO : Faire une fonction qui liste tout les produits
-
-    // TODO : faire une fonction pour lister les produits dans catégorie -> sous catégorie
+    private void traitementProduit(List<Produit> resultat, PreparedStatement prepare) throws SQLException {
+        ResultSet result = prepare.executeQuery();
+        if(result.first()) {
+            do {
+                resultat.add(new Produit(
+                        result.getLong("produit_id"),
+                        result.getString("nom"),
+                        result.getString("description"),
+                        result.getDouble("prix"),
+                        Produit.Categorie.valueOf(result.getString("categorie")),
+                        Produit.SousCategorie.valueOf(result.getString("sous_categorie"))
+                ));
+            } while (result.next());
+        }
+    }
 }

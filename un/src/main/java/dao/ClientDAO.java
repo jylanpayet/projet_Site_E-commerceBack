@@ -1,7 +1,6 @@
 package dao;
 
 import model.Client;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -81,17 +80,8 @@ public class ClientDAO extends DAO<Client>{
         try {
             PreparedStatement prepare = initialisationRequetePreparee(this.connect,"SELECT * FROM client",false);
             ResultSet result = prepare.executeQuery();
-            if(result.first()){
-                resultat.add(new Client(
-                        result.getLong("client_id"),
-                        result.getString("nom"),
-                        result.getString("adresse"),
-                        result.getString("mail"),
-                        result.getString("telephone"),
-                        result.getString("motdepasse"),
-                        result.getLong("admin")
-                ));
-                while (result.next()){
+            if(result.first()) {
+                do {
                     resultat.add(new Client(
                             result.getLong("client_id"),
                             result.getString("nom"),
@@ -101,7 +91,7 @@ public class ClientDAO extends DAO<Client>{
                             result.getString("motdepasse"),
                             result.getLong("admin")
                     ));
-                }
+                } while (result.next());
             }
         } catch (SQLException e) {
         e.printStackTrace();
