@@ -25,7 +25,7 @@ public class ProduitRessource {
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response putClient(Produit produit) {
+    public Response putProduit(Produit produit) {
         return putAndGetResponse(produit);
     }
 
