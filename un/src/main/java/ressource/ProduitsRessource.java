@@ -62,7 +62,7 @@ public class ProduitsRessource {
         } else {
             throw new IOException("Les champs ne sont pas correct.");
         }
-        // TODO : Verifier que tout les caractères sont correct.
+        // TODO : Verifier que tout les champs sont correct (Catégorie ect...)
         ProduitDAO.instance.create(nouveau);
         // redirect
         servletResponse.sendRedirect("");

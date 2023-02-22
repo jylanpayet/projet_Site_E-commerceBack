@@ -51,7 +51,7 @@ public class ClientsRessource {
         } else {
             throw new IOException("Les champs ne sont pas correct.");
         }
-        // TODO : Verifier que tout les caractères sont correct.
+        // TODO : Verifier que tout les champs sont correct (Bon mail ect ...)
         ClientDAO.instance.create(nouveau);
         // redirect
         servletResponse.sendRedirect("");
