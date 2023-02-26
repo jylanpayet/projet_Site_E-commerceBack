@@ -2,8 +2,8 @@ package model;
 
 import lombok.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -11,5 +11,5 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Panier {
-    private Map<Integer, Produit> panier = new HashMap<>();
+    private List<Pair<Integer,Produit>> panier = new ArrayList<>();
 }

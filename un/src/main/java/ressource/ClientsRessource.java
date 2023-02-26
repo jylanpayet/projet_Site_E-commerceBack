@@ -58,7 +58,7 @@ public class ClientsRessource {
     }
 
     @Path("{id}")
-    public ClientRessource getClient(@PathParam("id") Long id) {
+    public ClientRessource getClient(@PathParam("id") long id) {
         return new ClientRessource(uriInfo, request, id);
     }
 }

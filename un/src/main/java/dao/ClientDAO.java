@@ -7,9 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientDAO extends DAO<Client>{
+public class ClientDAO extends DAO{
     public static ClientDAO instance = new ClientDAO();
-    @Override
     public Client find(long id) {
         Client client = new Client();
         try {
@@ -32,7 +31,6 @@ public class ClientDAO extends DAO<Client>{
         return client;
     }
 
-    @Override
     public Client create(Client client) {
         try {
             //TODO : vérifier que les paramètres sont correctement remplis, gérer le cas où rien ne serait créer
@@ -49,21 +47,17 @@ public class ClientDAO extends DAO<Client>{
         return client;
     }
 
-    @Override
-    public Client update(Client client) {
+    public void update(Client client) {
         try {
-            //TODO : vérifier que tous les paramètres sont correctement remplis, et si l'update a été effectuer
+            //TODO : vérifier que tous les paramètres sont correctement remplis
             PreparedStatement prepare = initialisationRequetePreparee(this.connect,"UPDATE client SET nom = ?, adresse = ?, mail = ?, telephone = ?, motdepasse = ?, admin = ? WHERE client_id = ?",
                     false,client.getNom(),client.getAdresse(),client.getMail(),client.getTelephone(),client.getMotdepasse(), 0,client.getId());
             prepare.executeUpdate();
-            client = this.find(client.getId());
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return client;
     }
 
-    @Override
     public void delete(long id) {
         try {
             PreparedStatement prepare = initialisationRequetePreparee(this.connect,"DELETE FROM client WHERE client_id = ?",
@@ -98,5 +92,4 @@ public class ClientDAO extends DAO<Client>{
         }
         return resultat;
     }
-    // Todo : faire une fonction pour récupérer toutes les commandes d'un utilisateur
 }

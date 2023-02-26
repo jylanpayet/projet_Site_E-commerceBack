@@ -12,7 +12,7 @@ public class ClientRessource {
     UriInfo uriInfo;
     @Context
     Request request;
-    Long id;
+    long id;
 
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
@@ -30,11 +30,11 @@ public class ClientRessource {
     }
 
     @DELETE
-    public void deleteTodo() {
+    public void deleteClient() {
         ClientDAO.instance.delete(id);
         Client test = ClientDAO.instance.find(id);
         if(test != null)
-            throw new RuntimeException("Delete: Todo with " + id +  " not found");
+            throw new RuntimeException("Delete: Client with " + id +  " not found");
     }
 
     private Response putAndGetResponse(Client client) {

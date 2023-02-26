@@ -12,7 +12,7 @@ public class ProduitRessource {
     UriInfo uriInfo;
     @Context
     Request request;
-    Long id;
+    long id;
 
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
@@ -30,11 +30,11 @@ public class ProduitRessource {
     }
 
     @DELETE
-    public void deleteTodo() {
+    public void deleteProduit() {
         ProduitDAO.instance.delete(id);
         Produit test = ProduitDAO.instance.find(id);
         if(test != null)
-            throw new RuntimeException("Delete: Todo with " + id +  " not found");
+            throw new RuntimeException("Delete: Produit with " + id +  " not found");
     }
 
     private Response putAndGetResponse(Produit produit) {

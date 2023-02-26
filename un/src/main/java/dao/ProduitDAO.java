@@ -8,9 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProduitDAO extends DAO<Produit>{
+public class ProduitDAO extends DAO{
     public static ProduitDAO instance = new ProduitDAO();
-    @Override
     public Produit find(long id) {
         Produit produit = new Produit();
         try {
@@ -32,12 +31,11 @@ public class ProduitDAO extends DAO<Produit>{
         return produit;
     }
 
-    @Override
     public Produit create(Produit produit) {
         try {
         //TODO : vérifier que les paramètres sont corrects ,gérer le cas où rien ne serait créer
             PreparedStatement prepare = initialisationRequetePreparee(this.connect,"INSERT INTO produit (nom, description, prix, categorie, sous_categorie) VALUES(?,?,?,?,?)",
-                    true,produit.getNom(),produit.getDescription(),produit.getPrix(),produit.getCategorie(),produit.getSousCategorie());
+                    true,produit.getNom(),produit.getDescription(),produit.getPrix(),String.valueOf(produit.getCategorie()),String.valueOf(produit.getSousCategorie()));
             prepare.executeUpdate();
             ResultSet result = prepare.getGeneratedKeys();
             if (result.next()) {
@@ -49,21 +47,17 @@ public class ProduitDAO extends DAO<Produit>{
         return produit;
     }
 
-    @Override
-    public Produit update(Produit produit) {
+    public void update(Produit produit) {
         try {
-            //TODO : vérifier que tous les paramètres sont correctement remplis, et si l'update a été effectuer
+            //TODO : vérifier que tous les paramètres sont correctement remplis
             PreparedStatement prepare = initialisationRequetePreparee(this.connect,"UPDATE produit SET nom = ?, description = ?, prix = ?, categorie = ?, sous_categorie = ? WHERE produit_id = ?",
-                    false,produit.getNom(),produit.getDescription(),produit.getPrix(),produit.getCategorie(),produit.getSousCategorie());
+                    false,produit.getNom(),produit.getDescription(),produit.getPrix(),String.valueOf(produit.getCategorie()),String.valueOf(produit.getSousCategorie()));
             prepare.executeUpdate();
-            produit = this.find(produit.getId());
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return produit;
     }
 
-    @Override
     public void delete(long id) {
         try {
             PreparedStatement prepare = initialisationRequetePreparee(this.connect,"DELETE FROM produit WHERE produit_id = ?",

@@ -15,6 +15,7 @@ CREATE TABLE client (
 CREATE TABLE commande (
     commande_id INT PRIMARY KEY auto_increment,
     client_id INT NOT NULL,
+    date VARCHAR(255) NOT NULL,
     FOREIGN KEY (client_id) REFERENCES client(client_id)
 );
 
@@ -30,6 +31,7 @@ CREATE TABLE produit (
 CREATE TABLE list_commande_produit (
     commande_id INT NOT NULL,
     produit_id INT NOT NULL,
+    nombre INT NOT NULL DEFAULT 1,
     FOREIGN KEY (commande_id) REFERENCES commande(commande_id),
     FOREIGN KEY (produit_id) REFERENCES produit(produit_id)
 );

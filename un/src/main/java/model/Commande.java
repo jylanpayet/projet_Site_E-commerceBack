@@ -10,5 +10,5 @@ import lombok.*;
 public class Commande{
     private long id;
     private long client_id;
-
+    private String date;
 }

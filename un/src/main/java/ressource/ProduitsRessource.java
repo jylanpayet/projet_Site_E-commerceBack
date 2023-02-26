@@ -69,7 +69,7 @@ public class ProduitsRessource {
     }
 
     @Path("{id}")
-    public ProduitRessource getProduit(@PathParam("id") Long id) {
+    public ProduitRessource getProduit(@PathParam("id") long id) {
         return new ProduitRessource(uriInfo, request, id);
     }
 }
