@@ -17,7 +17,6 @@ public class CommandesRessource {
     UriInfo uriInfo;
     @Context
     Request request;
-    //TODO : lister les commandes d'un utilisateur
     @GET
     @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
     public List<Commande> getAllCommandeOfClient(@PathParam("client_id") long id){
