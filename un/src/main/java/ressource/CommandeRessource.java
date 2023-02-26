@@ -37,7 +37,4 @@ public class CommandeRessource {
         if(test != null)
             throw new RuntimeException("Delete: Commande with " + id +  " not found");
     }
-
-
-
 }

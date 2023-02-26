@@ -10,7 +10,7 @@ import java.util.List;
 public class ClientDAO extends DAO{
     public static ClientDAO instance = new ClientDAO();
     public Client find(long id) {
-        Client client = new Client();
+        Client client = null;
         try {
             PreparedStatement prepare = initialisationRequetePreparee(this.connect,"SELECT * FROM client WHERE client_id = ?",false,id);
             ResultSet result = prepare.executeQuery();

@@ -17,7 +17,7 @@ public class CommandeProduitDAO extends DAO{
         try{
             for(Pair<Integer, Produit> pair : panier.getPanier()){
                 PreparedStatement prepare = initialisationRequetePreparee(this.connect,"INSERT INTO list_commande_produit (commande_id , produit_id, nombre) VALUES(?, ?, ?)",
-                        false,commande_id,pair.getScd(),pair.getFst());
+                        false,commande_id,pair.getScd().getId(),pair.getFst());
                 prepare.executeUpdate();
             }
         } catch (SQLException e) {

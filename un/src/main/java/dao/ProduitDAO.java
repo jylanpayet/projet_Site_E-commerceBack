@@ -11,7 +11,7 @@ import java.util.List;
 public class ProduitDAO extends DAO{
     public static ProduitDAO instance = new ProduitDAO();
     public Produit find(long id) {
-        Produit produit = new Produit();
+        Produit produit = null;
         try {
             PreparedStatement prepare = initialisationRequetePreparee(this.connect,"SELECT * FROM produit WHERE produit_id = ?",false,id);
             ResultSet result = prepare.executeQuery();

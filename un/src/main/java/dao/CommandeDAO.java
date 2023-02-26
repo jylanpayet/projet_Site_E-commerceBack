@@ -14,7 +14,7 @@ import java.util.List;
 public class CommandeDAO extends DAO{
     public static CommandeDAO instance = new CommandeDAO();
     public Commande find(long id) {
-        Commande commande = new Commande();
+        Commande commande = null;
         try {
             PreparedStatement prepare = initialisationRequetePreparee(this.connect,"SELECT * FROM commande WHERE commande_id = ?",false,id);
             ResultSet result = prepare.executeQuery();
@@ -43,9 +43,10 @@ public class CommandeDAO extends DAO{
             ResultSet result = prepare.getGeneratedKeys();
             if (result.next()) {
                 commande = this.find(result.getLong( 1 ));
+                // Une fois la commande créer, lier les produits du panier à la commande
+                CommandeProduitDAO.instance.create(commande.getId(),panier);
             }
-            // Une fois la commande créer, lier les produits du panier à la commande
-            CommandeProduitDAO.instance.create(commande.getId(),panier);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

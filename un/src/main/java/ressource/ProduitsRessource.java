@@ -20,20 +20,12 @@ public class ProduitsRessource {
 
     @GET
     @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-    public List<Produit> getProduits(){
+    public List<Produit> getProduits(@QueryParam("categorie") String categorie, @QueryParam("sousCategorie") String sousCategorie){
+        if(sousCategorie != null)
+            return ProduitDAO.instance.produitOfSousCategorie(categorie,sousCategorie);
+        else if (categorie != null)
+            ProduitDAO.instance.produitOfCategorie(categorie);
         return ProduitDAO.instance.allProduit();
-    }
-    @Path("{categorie}")
-    @GET
-    @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-    public List<Produit> getProduitsOfCategorie(@PathParam("categorie") String categorie){
-        return ProduitDAO.instance.produitOfCategorie(categorie);
-    }
-    @Path("{categorie}/{sousCategorie}")
-    @GET
-    @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-    public List<Produit> getProduitsOfCategorie(@PathParam("categorie") String categorie, @PathParam("sousCategorie") String sousCategorie){
-        return ProduitDAO.instance.produitOfSousCategorie(categorie,sousCategorie);
     }
     @GET
     @Path("count")
@@ -67,7 +59,6 @@ public class ProduitsRessource {
         // redirect
         servletResponse.sendRedirect("");
     }
-
     @Path("{id}")
     public ProduitRessource getProduit(@PathParam("id") long id) {
         return new ProduitRessource(uriInfo, request, id);
