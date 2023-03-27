@@ -29,7 +29,7 @@ public class CommandeProduitDAO extends DAO{
         try {
             PreparedStatement prepare = initialisationRequetePreparee(this.connect,"SELECT * FROM list_commande_produit WHERE commande_id = ?",false, commande_id);
             ResultSet result = prepare.executeQuery();
-            if(result.first()) {
+            if(result.next()) {
                 do {
                     resultat.add(new Pair<>(result.getInt("nombre"), ProduitDAO.instance.find(result.getLong("produit_id"))));
                 } while (result.next());

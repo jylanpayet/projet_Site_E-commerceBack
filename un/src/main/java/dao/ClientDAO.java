@@ -14,7 +14,7 @@ public class ClientDAO extends DAO{
         try {
             PreparedStatement prepare = initialisationRequetePreparee(this.connect,"SELECT * FROM client WHERE client_id = ?",false,id);
             ResultSet result = prepare.executeQuery();
-            if(result.first())
+            if(result.next())
                 client = new Client(
                         result.getLong("client_id"),
                         result.getString("nom"),
@@ -74,7 +74,7 @@ public class ClientDAO extends DAO{
         try {
             PreparedStatement prepare = initialisationRequetePreparee(this.connect,"SELECT * FROM client",false);
             ResultSet result = prepare.executeQuery();
-            if(result.first()) {
+            if(result.next()) {
                 do {
                     resultat.add(new Client(
                             result.getLong("client_id"),

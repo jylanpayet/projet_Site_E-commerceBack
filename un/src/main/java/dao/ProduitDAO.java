@@ -15,7 +15,7 @@ public class ProduitDAO extends DAO{
         try {
             PreparedStatement prepare = initialisationRequetePreparee(this.connect,"SELECT * FROM produit WHERE produit_id = ?",false,id);
             ResultSet result = prepare.executeQuery();
-            if(result.first())
+            if(result.next())
                 produit = new Produit(
                         result.getLong("produit_id"),
                         result.getString("nom"),
@@ -101,7 +101,7 @@ public class ProduitDAO extends DAO{
 
     private void traitementProduit(List<Produit> resultat, PreparedStatement prepare) throws SQLException {
         ResultSet result = prepare.executeQuery();
-        if(result.first()) {
+        if(result.next()) {
             do {
                 resultat.add(new Produit(
                         result.getLong("produit_id"),

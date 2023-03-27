@@ -18,7 +18,7 @@ public class CommandeDAO extends DAO{
         try {
             PreparedStatement prepare = initialisationRequetePreparee(this.connect,"SELECT * FROM commande WHERE commande_id = ?",false,id);
             ResultSet result = prepare.executeQuery();
-            if(result.first())
+            if(result.next())
                 commande = new Commande(
                         result.getLong("commande_id"),
                         result.getLong("client_id"),
@@ -69,7 +69,7 @@ public class CommandeDAO extends DAO{
         try {
             PreparedStatement prepare = initialisationRequetePreparee(this.connect,"SELECT * FROM commande WHERE client_id = ?",false,client_id);
             ResultSet result = prepare.executeQuery();
-            if(result.first()) {
+            if(result.next()) {
                 do {
                     resultat.add(new Commande(
                             result.getLong("commande_id"),
