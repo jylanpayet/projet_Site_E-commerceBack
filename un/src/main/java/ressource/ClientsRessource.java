@@ -11,6 +11,7 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 import java.io.IOException;
 import java.util.List;
+import javax.ws.rs.PathParam;
 
 @Path("clients")
 public class ClientsRessource {
@@ -29,6 +30,17 @@ public class ClientsRessource {
     @Produces(MediaType.TEXT_PLAIN)
     public String getCount() {
         return String.valueOf(ClientDAO.instance.allClient().size());
+    }
+
+    @GET
+    @Path("/by-email/{email}")
+    @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+    public Client getClientByEmail(@PathParam("email") String email) {
+        System.out.println("Email received: " + email);
+        // Utilisez la méthode appropriée de votre DAO pour trouver un client par email
+        Client client = ClientDAO.instance.findClientByEmail(email);
+        System.out.println("Client found: " + client);
+        return client;
     }
 
     @POST

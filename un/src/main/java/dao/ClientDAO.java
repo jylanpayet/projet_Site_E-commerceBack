@@ -31,6 +31,31 @@ public class ClientDAO extends DAO{
         return client;
     }
 
+    public Client findClientByEmail(String email) {
+        Client client = null;
+        try {
+            PreparedStatement prepare = initialisationRequetePreparee(this.connect,"SELECT * FROM client WHERE mail = ?",false,email);
+            System.out.println("Prepared statement: " + prepare.toString());
+            ResultSet result = prepare.executeQuery();
+            if(result.next()) {
+                client = new Client(
+                        result.getLong("client_id"),
+                        result.getString("nom"),
+                        result.getString("adresse"),
+                        result.getString("mail"),
+                        result.getString("telephone"),
+                        result.getString("motdepasse"),
+                        result.getLong("admin")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Client found in DAO: " + client);
+        return client;
+    }
+
+
     public Client create(Client client) {
         try {
             //TODO : vérifier que les paramètres sont correctement remplis, gérer le cas où rien ne serait créer
