@@ -60,7 +60,7 @@ public class ClientDAO extends DAO{
         try {
             //TODO : vérifier que les paramètres sont correctement remplis, gérer le cas où rien ne serait créer
             PreparedStatement prepare = initialisationRequetePreparee(this.connect,"INSERT INTO client (nom, mail, adresse , telephone, motdepasse, admin) VALUES(?,?,?,?,?,?)",
-                    true,client.getNom(),client.getAdresse(),client.getMail(),client.getTelephone(),client.getMotdepasse(),0);
+                    true,client.getNom(),client.getMail(),client.getAdresse(),client.getTelephone(),client.getMotdepasse(),0);
             prepare.executeUpdate();
             ResultSet result = prepare.getGeneratedKeys();
             if (result.next()) {
