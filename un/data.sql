@@ -25,7 +25,8 @@ CREATE TABLE produit (
     description VARCHAR(255) NOT NULL,
     prix DECIMAL(10, 2) NOT NULL,
     categorie VARCHAR(255) NOT NULL,
-    sous_categorie VARCHAR(255) NOT NULL
+    sous_categorie VARCHAR(255) NOT NULL,
+    photo VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE list_commande_produit (

@@ -22,7 +22,8 @@ public class ProduitDAO extends DAO{
                         result.getString("description"),
                         result.getDouble("prix"),
                         Produit.Categorie.valueOf(result.getString("categorie")),
-                        Produit.SousCategorie.valueOf(result.getString("sous_categorie"))
+                        Produit.SousCategorie.valueOf(result.getString("sous_categorie")),
+                        result.getString("photo")
                 );
             //TODO : gérer le cas où rien ne serait trouver
         } catch (SQLException e) {
@@ -34,8 +35,8 @@ public class ProduitDAO extends DAO{
     public Produit create(Produit produit) {
         try {
         //TODO : vérifier que les paramètres sont corrects ,gérer le cas où rien ne serait créer
-            PreparedStatement prepare = initialisationRequetePreparee(this.connect,"INSERT INTO produit (nom, description, prix, categorie, sous_categorie) VALUES(?,?,?,?,?)",
-                    true,produit.getNom(),produit.getDescription(),produit.getPrix(),String.valueOf(produit.getCategorie()),String.valueOf(produit.getSousCategorie()));
+            PreparedStatement prepare = initialisationRequetePreparee(this.connect,"INSERT INTO produit (nom, description, prix, categorie, sous_categorie, photo) VALUES(?,?,?,?,?,?)",
+                    true,produit.getNom(),produit.getDescription(),produit.getPrix(),String.valueOf(produit.getCategorie()),String.valueOf(produit.getSousCategorie()),produit.getPhoto());
             prepare.executeUpdate();
             ResultSet result = prepare.getGeneratedKeys();
             if (result.next()) {
@@ -50,8 +51,8 @@ public class ProduitDAO extends DAO{
     public void update(Produit produit) {
         try {
             //TODO : vérifier que tous les paramètres sont correctement remplis
-            PreparedStatement prepare = initialisationRequetePreparee(this.connect,"UPDATE produit SET nom = ?, description = ?, prix = ?, categorie = ?, sous_categorie = ? WHERE produit_id = ?",
-                    false,produit.getNom(),produit.getDescription(),produit.getPrix(),String.valueOf(produit.getCategorie()),String.valueOf(produit.getSousCategorie()));
+            PreparedStatement prepare = initialisationRequetePreparee(this.connect,"UPDATE produit SET nom = ?, description = ?, prix = ?, categorie = ?, sous_categorie = ?, photo = ? WHERE produit_id = ?",
+                    false,produit.getNom(),produit.getDescription(),produit.getPrix(),String.valueOf(produit.getCategorie()),String.valueOf(produit.getSousCategorie()), produit.getPhoto());
             prepare.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -109,7 +110,8 @@ public class ProduitDAO extends DAO{
                         result.getString("description"),
                         result.getDouble("prix"),
                         Produit.Categorie.valueOf(result.getString("categorie")),
-                        Produit.SousCategorie.valueOf(result.getString("sous_categorie"))
+                        Produit.SousCategorie.valueOf(result.getString("sous_categorie")),
+                        result.getString("photo")
                 ));
             } while (result.next());
         }

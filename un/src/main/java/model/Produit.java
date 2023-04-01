@@ -13,6 +13,7 @@ public class Produit {
     private double prix;
 	private Categorie categorie;
 	private SousCategorie sousCategorie;
+	private String photo;
 
 	public enum Categorie {
 		Ordinateurs,

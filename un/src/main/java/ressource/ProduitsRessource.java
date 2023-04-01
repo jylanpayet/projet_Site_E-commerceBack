@@ -43,6 +43,7 @@ public class ProduitsRessource {
             @FormParam("prix") double prix,
             @FormParam("categorie") String categorie,
             @FormParam("sousCategorie") String sousCategorie,
+            @FormParam("photo") String photo,
             @Context HttpServletResponse servletResponse) throws IOException {
         Produit nouveau = new Produit();
         if (nom != null && description != null && categorie != null && sousCategorie != null) {
@@ -51,6 +52,7 @@ public class ProduitsRessource {
             nouveau.setPrix(prix);
             nouveau.setCategorie(Produit.Categorie.valueOf(categorie));
             nouveau.setSousCategorie(Produit.SousCategorie.valueOf(sousCategorie));
+            nouveau.setPhoto(photo);
         } else {
             throw new IOException("Les champs ne sont pas correct.");
         }
