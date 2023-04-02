@@ -52,7 +52,7 @@ public class ProduitDAO extends DAO{
         try {
             //TODO : vérifier que tous les paramètres sont correctement remplis
             PreparedStatement prepare = initialisationRequetePreparee(this.connect,"UPDATE produit SET nom = ?, description = ?, prix = ?, categorie = ?, sous_categorie = ?, photo = ? WHERE produit_id = ?",
-                    false,produit.getNom(),produit.getDescription(),produit.getPrix(),String.valueOf(produit.getCategorie()),String.valueOf(produit.getSousCategorie()), produit.getPhoto());
+                    false,produit.getNom(),produit.getDescription(),produit.getPrix(),String.valueOf(produit.getCategorie()),String.valueOf(produit.getSousCategorie()), produit.getPhoto(), produit.getId());
             prepare.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -40,7 +40,7 @@ public class ProduitsRessource {
     public void nouveauProduit(
             @FormParam("nom") String nom,
             @FormParam("description") String description,
-            @FormParam("prix") double prix,
+            @FormParam("prix") String prix,
             @FormParam("categorie") String categorie,
             @FormParam("sousCategorie") String sousCategorie,
             @FormParam("photo") String photo,
@@ -49,7 +49,7 @@ public class ProduitsRessource {
         if (nom != null && description != null && categorie != null && sousCategorie != null) {
             nouveau.setNom(nom);
             nouveau.setDescription(description);
-            nouveau.setPrix(prix);
+            nouveau.setPrix(Double.parseDouble(prix));
             nouveau.setCategorie(Produit.Categorie.valueOf(categorie));
             nouveau.setSousCategorie(Produit.SousCategorie.valueOf(sousCategorie));
             nouveau.setPhoto(photo);
